@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changelog - VidClaw | Self-Hosted AI Dashboard Updates</title>
+  <meta name="description" content="VidClaw changelog — latest updates, new features, and improvements to the self-hosted AI dashboard for OpenClaw agent management.">
+  <link rel="canonical" href="https://vidclaw.com/changelog">
+  <script async src="https://analytics.redstudio.ie/js/pa-wEudNzILXpT5UYCuAZWXT.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --bg: #0a0a0f; --surface: #12121a; --border: #1e1e2e; --text: #e4e4e7; --muted: #71717a; --accent: #f97316; }
+    html, body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; max-width: 1100px; margin: 0 auto; padding: 1.5rem 2rem; gap: 0.75rem; }
+    .ph-badge { display: flex; align-items: center; }
+    .ph-badge img { border-radius: 4px; }
+    .nav-icons { display: flex; align-items: center; gap: 0.75rem; }
+    .gh-link { color: var(--muted); transition: color 0.2s; }
+    .gh-link:hover { color: var(--text); }
+    nav .brand { font-weight: 800; font-size: 1.2rem; color: var(--text); display: flex; align-items: center; gap: 0.5rem; }
+    nav .brand:hover { text-decoration: none; color: var(--accent); }
+    nav .nav-links { display: flex; gap: 1.5rem; font-size: 0.95rem; }
+    nav .nav-links a { color: var(--muted); }
+    nav .nav-links a:hover, nav .nav-links a.active { color: var(--accent); text-decoration: none; }
+
+    .page { max-width: 800px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+    .page h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #f97316, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .page .subtitle { color: var(--muted); font-size: 1.15rem; margin-bottom: 3rem; }
+    .page p, .page li { color: var(--muted); font-size: 1rem; margin-bottom: 0.75rem; }
+    .page p strong { color: var(--text); }
+    .page ul { padding-left: 1.5rem; margin-bottom: 1.5rem; }
+
+    .release { border-left: 2px solid var(--border); padding-left: 2rem; margin-bottom: 3rem; position: relative; }
+    .release::before { content: ''; position: absolute; left: -6px; top: 0.5rem; width: 10px; height: 10px; background: var(--accent); border-radius: 50%; }
+    .release h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .release .date { color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem; }
+    .release .tag { display: inline-block; font-size: 0.75rem; font-weight: 600; padding: 0.15rem 0.6rem; border-radius: 100px; margin-left: 0.5rem; }
+    .tag-new { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+    .tag-improved { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+    .tag-fix { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+
+    footer { text-align: center; padding: 3rem 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="brand">⚡ VidClaw</a>
+    <div class="nav-links">
+      <a href="/features">Features</a>
+      <a href="/install">Install</a>
+      <a href="/blog">Blog</a>
+      <a href="/changelog" class="active">Changelog</a>
+    </div>
+    <div class="nav-icons">
+      <div class="ph-badge">
+        <a href="https://www.producthunt.com/products/vidclaw?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-vidclaw" target="_blank" rel="noopener noreferrer"><img alt="VidClaw on Product Hunt" width="150" height="32" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1080264&amp;theme=dark&amp;t=1771254815882" style="display:block;"></a>
+      </div>
+      <a href="https://github.com/madrzak/vidclaw" target="_blank" rel="noopener noreferrer" class="gh-link" title="View on GitHub"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+    </div>
+  </nav>
+
+  <div class="page">
+    <h1>Changelog</h1>
+    <p class="subtitle">All notable updates to VidClaw, the <a href="/features">self-hosted AI dashboard</a> for <a href="/install">OpenClaw agent management</a>.</p>
+
+    <div class="release">
+      <h2>v1.2.5 <span class="tag tag-new">New</span><span class="tag tag-improved">Improved</span></h2>
+      <div class="date">February 24, 2026</div>
+      <ul>
+        <li><strong>File browser auto-refresh</strong> — file list now refetches when the browser tab regains focus, preventing stale data</li>
+        <li><strong>Folder navigation loading spinner</strong> — centered spinner while loading directory contents instead of showing old entries</li>
+        <li><strong>Refresh button and timestamp</strong> — breadcrumb bar shows a manual refresh icon and "last fetched" time</li>
+        <li><strong>Default file browser path</strong> — new setting to choose which directory opens by default (defaults to <code>content</code>)</li>
+        <li><strong>Settings page cleanup</strong> — section icons use consistent muted color instead of multicolor</li>
+      </ul>
+    </div>
+
+    <div class="release">
+      <h2>v1.2.2 <span class="tag tag-new">New</span></h2>
+      <div class="date">February 24, 2026</div>
+      <ul>
+        <li><strong>Markdown rendering for task outputs</strong> — task results and errors now render as proper markdown with headers, lists, links, and code blocks</li>
+        <li><strong>Syntax-highlighted code blocks</strong> — bundled GitHub Dark theme for code output, no CDN dependencies</li>
+        <li><strong>Raw/rendered toggle</strong> — switch between formatted markdown and raw text in the task detail dialog</li>
+        <li><strong>XSS protection</strong> — output sanitized via rehype-sanitize (no raw HTML passthrough)</li>
+      </ul>
+    </div>
+
+    <div class="release">
+      <h2>v1.1.1 <span class="tag tag-new">New</span><span class="tag tag-improved">Improved</span><span class="tag tag-fix">Fix</span></h2>
+      <div class="date">February 19, 2026</div>
+      <ul>
+        <li><strong>Task scheduling UI</strong> — set recurring schedules directly from the task dialog: every N hours, days, weeks, or months with a time picker</li>
+        <li><strong>Quick-add schedule shortcuts</strong> — type <code>/daily</code>, <code>/2d</code>, <code>/6h</code> etc. in the quick-add input alongside <code>@skill</code> mentions</li>
+        <li><strong>Schedule indicators on Kanban cards</strong> — orange left border and badge showing interval and next run time; paused schedules shown as dimmed with strikethrough</li>
+        <li><strong>Recurring task auto-reschedule</strong> — completed recurring tasks save to run history and reset to todo with the next scheduled time instead of staying done</li>
+        <li><strong>Calendar future projections</strong> — recurring tasks now show on all future dates (up to 90 days) in the calendar view, not just the next run</li>
+        <li><strong>Delete button in task dialog</strong> — delete tasks directly from the edit modal</li>
+        <li>Fix: schedule times now respect the user's configured timezone</li>
+        <li>Fix: cron step parsing for day-of-month and month fields</li>
+        <li>Fix: <code>computeNextRun</code> import missing in task controller</li>
+        <li>Fix: adding a schedule to an existing task now correctly enables it</li>
+      </ul>
+    </div>
+
+    <div class="release">
+      <h2>v1.0.6 <span class="tag tag-new">New</span><span class="tag tag-fix">Fix</span></h2>
+      <div class="date">February 18, 2026</div>
+      <ul>
+        <li>All task deletes are now <strong>soft deletes</strong> (archived, not removed)</li>
+        <li>Added "Clear All" button for the Done column</li>
+        <li>Fix: SkillsManager uses relative URLs (<a href="https://github.com/madrzak/vidclaw/issues/29">#29</a>)</li>
+      </ul>
+    </div>
+
+    <div class="release">
+      <h2>v1.0.5 <span class="tag tag-new">New</span><span class="tag tag-improved">Improved</span></h2>
+      <div class="date">February 18, 2026</div>
+      <ul>
+        <li>Added <strong>Tailscale Serve</strong> integration for secure remote access</li>
+        <li>Cross-platform setup — macOS launchd support alongside Linux systemd</li>
+        <li>Hardened service scripts and CI security safeguards</li>
+        <li>Fix: upgrade Vite to v7 and react-syntax-highlighter to v16</li>
+        <li>Fix: npm vulnerability patches</li>
+      </ul>
+    </div>
+
+    <div class="release">
+      <h2>v1.0.4 <span class="tag tag-improved">Improved</span></h2>
+      <div class="date">February 18, 2026</div>
+      <ul>
+        <li>OpenClaw version check is now manual instead of running on page load</li>
+      </ul>
+    </div>
+
+    <div class="release">
+      <h2>v1.0.2 <span class="tag tag-improved">Improved</span></h2>
+      <div class="date">February 18, 2026</div>
+      <ul>
+        <li>Auto-refresh countdown after VidClaw self-update</li>
+      </ul>
+    </div>
+
+    <div class="release">
+      <h2>v1.0.1 <span class="tag tag-fix">Fix</span></h2>
+      <div class="date">February 18, 2026</div>
+      <ul>
+        <li>Fix: suppress detached HEAD warning in <code>update.sh</code></li>
+      </ul>
+    </div>
+
+    <div class="release">
+      <h2>v1.0.0</h2>
+      <div class="date">February 18, 2026</div>
+      <ul>
+        <li>Initial release of VidClaw</li>
+        <li>Kanban task board with drag-and-drop across four columns</li>
+        <li>Recurring and scheduled tasks with calendar integration</li>
+        <li>File browser with sorting and metadata display</li>
+        <li>Skills Manager, Soul Editor with version history</li>
+        <li>AI usage tracking with per-model cost breakdowns</li>
+        <li>Dark/light theme toggle</li>
+        <li>Activity timeline and heartbeat monitoring</li>
+        <li>One-command setup via <code>setup.sh</code>, SSH tunnel security model</li>
+      </ul>
+    </div>
+
+    <p style="text-align: center; margin-top: 3rem;">For the full commit history, see the <a href="https://github.com/madrzak/vidclaw/commits/main">GitHub commits</a>. Explore all <a href="/features">features</a> or read the <a href="/install">install guide</a>.</p>
+  </div>
+
+  <footer>
+    <p>Built by <a href="https://x.com/woocassh">woocassh</a> · <a href="https://github.com/madrzak/vidclaw">GitHub</a> · <a href="/features">Features</a> · <a href="/install">Install</a> · <a href="/blog">Blog</a> · <a href="/changelog">Changelog</a> · MIT License</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+services:
+  ai-human-task-board:
+    build: .
+    restart: unless-stopped
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3333
+      OPENCLAW_DIR: /openclaw
+      VIDCLAW_AUTH_USER: ${VIDCLAW_AUTH_USER}
+      VIDCLAW_AUTH_PASSWORD: ${VIDCLAW_AUTH_PASSWORD}
+    ports:
+      - "3333:3333"
+    volumes:
+      - ./data:/app/data
+      - ${OPENCLAW_DIR:-/root/.openclaw}:/openclaw:ro

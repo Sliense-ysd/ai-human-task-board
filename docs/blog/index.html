@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - VidClaw | Self-Hosted AI Dashboard Tips & Tutorials</title>
+  <meta name="description" content="Tutorials, guides, and tips for managing your OpenClaw AI agent with VidClaw — the self-hosted AI dashboard.">
+  <link rel="canonical" href="https://vidclaw.com/blog">
+
+  <!-- Twitter / X card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog - VidClaw">
+  <meta name="twitter:description" content="Tutorials, guides, and tips for managing your OpenClaw AI agent with VidClaw.">
+  <meta name="twitter:image" content="https://vidclaw.com/img/og-vidclaw-com.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vidclaw.com/blog">
+  <meta property="og:title" content="Blog - VidClaw">
+  <meta property="og:description" content="Tutorials, guides, and tips for managing your OpenClaw AI agent with VidClaw.">
+  <meta property="og:image" content="https://vidclaw.com/img/og-vidclaw-com.png">
+
+  <script async src="https://analytics.redstudio.ie/js/pa-wEudNzILXpT5UYCuAZWXT.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --bg: #0a0a0f; --surface: #12121a; --border: #1e1e2e; --text: #e4e4e7; --muted: #71717a; --accent: #f97316; }
+    html, body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; max-width: 1100px; margin: 0 auto; padding: 1.5rem 2rem; gap: 0.75rem; }
+    .ph-badge { display: flex; align-items: center; }
+    .ph-badge img { border-radius: 4px; }
+    .nav-icons { display: flex; align-items: center; gap: 0.75rem; }
+    .gh-link { color: var(--muted); transition: color 0.2s; }
+    .gh-link:hover { color: var(--text); }
+    nav .brand { font-weight: 800; font-size: 1.2rem; color: var(--text); display: flex; align-items: center; gap: 0.5rem; }
+    nav .brand:hover { text-decoration: none; color: var(--accent); }
+    nav .nav-links { display: flex; gap: 1.5rem; font-size: 0.95rem; }
+    nav .nav-links a { color: var(--muted); }
+    nav .nav-links a:hover, nav .nav-links a.active { color: var(--accent); text-decoration: none; }
+
+    .page { max-width: 800px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+    .page h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #f97316, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .page .subtitle { color: var(--muted); font-size: 1.15rem; margin-bottom: 3rem; }
+
+    .post-card { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color 0.2s, transform 0.2s; margin-bottom: 1.5rem; color: var(--text); }
+    .post-card:hover { border-color: var(--accent); transform: translateY(-2px); text-decoration: none; }
+    .post-card-banner { width: 100%; height: 6px; display: block; }
+    .post-card-body { padding: 1.5rem 2rem; }
+    .post-card-meta { display: flex; align-items: center; gap: 1rem; font-size: 0.85rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .post-card-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
+    .post-card-excerpt { color: var(--muted); font-size: 0.95rem; margin-bottom: 1rem; }
+    .post-card-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .post-tag { font-size: 0.75rem; font-weight: 600; padding: 0.15rem 0.6rem; border-radius: 100px; background: rgba(249, 115, 22, 0.15); color: var(--accent); }
+
+    #posts-loading { text-align: center; color: var(--muted); padding: 2rem; }
+
+    footer { text-align: center; padding: 3rem 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="brand">⚡ VidClaw</a>
+    <div class="nav-links">
+      <a href="/features">Features</a>
+      <a href="/install">Install</a>
+      <a href="/blog" class="active">Blog</a>
+      <a href="/changelog">Changelog</a>
+    </div>
+    <div class="nav-icons">
+      <div class="ph-badge">
+        <a href="https://www.producthunt.com/products/vidclaw?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-vidclaw" target="_blank" rel="noopener noreferrer"><img alt="VidClaw on Product Hunt" width="150" height="32" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1080264&amp;theme=dark&amp;t=1771254815882" style="display:block;"></a>
+      </div>
+      <a href="https://github.com/madrzak/vidclaw" target="_blank" rel="noopener noreferrer" class="gh-link" title="View on GitHub"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+    </div>
+  </nav>
+
+  <div class="page">
+    <h1>Blog</h1>
+    <p class="subtitle">Tutorials, guides, and tips for running your self-hosted AI agent.</p>
+
+    <div id="posts-container">
+      <div id="posts-loading">Loading posts...</div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Built by <a href="https://x.com/woocassh">woocassh</a> · <a href="https://github.com/madrzak/vidclaw">GitHub</a> · <a href="/features">Features</a> · <a href="/install">Install</a> · <a href="/blog">Blog</a> · <a href="/changelog">Changelog</a> · MIT License</p>
+  </footer>
+
+  <script>
+    fetch('/blog/posts.json')
+      .then(function(r) { return r.json(); })
+      .then(function(posts) {
+        var container = document.getElementById('posts-container');
+        container.innerHTML = '';
+        posts.forEach(function(post) {
+          var date = new Date(post.date + 'T00:00:00');
+          var dateStr = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+          var tags = post.tags.map(function(t) { return '<span class="post-tag">' + t + '</span>'; }).join('');
+          var gradient = post.gradient || 'linear-gradient(135deg, #f97316, #fbbf24)';
+          container.innerHTML += '<a class="post-card" href="/blog/' + post.slug + '/">' +
+            '<div class="post-card-banner" style="background:' + gradient + '"></div>' +
+            '<div class="post-card-body">' +
+              '<div class="post-card-meta"><span>' + dateStr + '</span><span>' + post.readingTime + '</span></div>' +
+              '<div class="post-card-title">' + post.title + '</div>' +
+              '<p class="post-card-excerpt">' + post.excerpt + '</p>' +
+              '<div class="post-card-tags">' + tags + '</div>' +
+            '</div>' +
+          '</a>';
+        });
+      })
+      .catch(function() {
+        document.getElementById('posts-container').innerHTML = '<p style="color:var(--muted);text-align:center;">Could not load posts.</p>';
+      });
+  </script>
+
+</body>
+</html>

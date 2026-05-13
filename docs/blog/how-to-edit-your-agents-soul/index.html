@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Edit Your Agent's Soul in VidClaw</title>
+  <meta name="description" content="Learn how to use VidClaw's Soul Editor to shape your OpenClaw agent's personality — from picking a starter template to writing custom instructions and managing version history.">
+  <link rel="canonical" href="https://vidclaw.com/blog/how-to-edit-your-agents-soul/">
+
+  <!-- Twitter / X card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Edit Your Agent's Soul in VidClaw">
+  <meta name="twitter:description" content="Learn how to use VidClaw's Soul Editor to shape your OpenClaw agent's personality — from picking a starter template to writing custom instructions.">
+  <meta name="twitter:image" content="https://vidclaw.com/img/og-vidclaw-com.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://vidclaw.com/blog/how-to-edit-your-agents-soul/">
+  <meta property="og:title" content="How to Edit Your Agent's Soul in VidClaw">
+  <meta property="og:description" content="Learn how to use VidClaw's Soul Editor to shape your OpenClaw agent's personality — from picking a starter template to writing custom instructions.">
+  <meta property="og:image" content="https://vidclaw.com/img/og-vidclaw-com.png">
+  <meta property="article:published_time" content="2026-02-23T00:00:00Z">
+  <meta property="article:author" content="woocassh">
+  <meta property="article:tag" content="tutorial">
+  <meta property="article:tag" content="soul-editor">
+  <meta property="article:tag" content="customization">
+  <meta property="article:tag" content="agents">
+
+  <!-- JSON-LD structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Edit Your Agent's Soul in VidClaw",
+    "description": "Learn how to use VidClaw's Soul Editor to shape your OpenClaw agent's personality — from picking a starter template to writing custom instructions and managing version history.",
+    "image": "https://vidclaw.com/img/og-vidclaw-com.png",
+    "datePublished": "2026-02-23T00:00:00Z",
+    "author": {
+      "@type": "Person",
+      "name": "woocassh",
+      "url": "https://x.com/woocassh"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "VidClaw",
+      "url": "https://vidclaw.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://vidclaw.com/blog/how-to-edit-your-agents-soul/"
+    }
+  }
+  </script>
+
+  <script async src="https://analytics.redstudio.ie/js/pa-wEudNzILXpT5UYCuAZWXT.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --bg: #0a0a0f; --surface: #12121a; --border: #1e1e2e; --text: #e4e4e7; --muted: #71717a; --accent: #f97316; }
+    html, body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; max-width: 1100px; margin: 0 auto; padding: 1.5rem 2rem; gap: 0.75rem; }
+    .ph-badge { display: flex; align-items: center; }
+    .ph-badge img { border-radius: 4px; }
+    .nav-icons { display: flex; align-items: center; gap: 0.75rem; }
+    .gh-link { color: var(--muted); transition: color 0.2s; }
+    .gh-link:hover { color: var(--text); }
+    nav .brand { font-weight: 800; font-size: 1.2rem; color: var(--text); display: flex; align-items: center; gap: 0.5rem; }
+    nav .brand:hover { text-decoration: none; color: var(--accent); }
+    nav .nav-links { display: flex; gap: 1.5rem; font-size: 0.95rem; }
+    nav .nav-links a { color: var(--muted); }
+    nav .nav-links a:hover, nav .nav-links a.active { color: var(--accent); text-decoration: none; }
+
+    .page { max-width: 800px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+    .page h1 { font-size: clamp(2rem, 5vw, 2.5rem); font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #f97316, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .page h2 { font-size: 1.5rem; font-weight: 700; margin: 3rem 0 1rem; padding-top: 1rem; }
+    .page h3 { font-size: 1.15rem; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+    .page p, .page li { color: var(--muted); font-size: 1rem; margin-bottom: 1rem; }
+    .page p strong { color: var(--text); }
+    .page ul, .page ol { padding-left: 1.5rem; margin-bottom: 1.5rem; }
+    .page li { margin-bottom: 0.5rem; }
+    .page code { background: var(--surface); border: 1px solid var(--border); padding: 0.15rem 0.4rem; border-radius: 4px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.9rem; }
+
+    .article-meta { display: flex; align-items: center; gap: 1rem; color: var(--muted); font-size: 0.9rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .article-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .post-tag { font-size: 0.75rem; font-weight: 600; padding: 0.15rem 0.6rem; border-radius: 100px; background: rgba(249, 115, 22, 0.15); color: var(--accent); }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+    .back-link:hover { color: var(--accent); text-decoration: none; }
+
+    .code-block { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem 2rem; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.9rem; color: var(--text); overflow-x: auto; margin-bottom: 1.5rem; white-space: pre-wrap; }
+    .code-block .comment { color: var(--muted); }
+
+    .step { counter-increment: step; position: relative; padding-left: 3rem; margin-bottom: 2.5rem; }
+    .step::before { content: counter(step); position: absolute; left: 0; top: 0; width: 2rem; height: 2rem; background: var(--accent); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; }
+    .steps { counter-reset: step; }
+
+    .note { background: var(--surface); border-left: 3px solid var(--accent); padding: 1rem 1.5rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+    .note p { margin-bottom: 0; }
+
+    .cta-box { text-align: center; margin: 3rem 0 0; padding: 2.5rem 2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+    .cta-box p { color: var(--muted); margin-bottom: 1rem; }
+    .cta-box .cta-title { font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; border-radius: 8px; font-size: 1rem; font-weight: 600; transition: all 0.2s; border: none; cursor: pointer; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #ea580c; transform: translateY(-1px); box-shadow: 0 8px 30px rgba(249, 115, 22, 0.3); text-decoration: none; }
+
+    footer { text-align: center; padding: 3rem 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="brand">⚡ VidClaw</a>
+    <div class="nav-links">
+      <a href="/features">Features</a>
+      <a href="/install">Install</a>
+      <a href="/blog" class="active">Blog</a>
+      <a href="/changelog">Changelog</a>
+    </div>
+    <div class="nav-icons">
+      <div class="ph-badge">
+        <a href="https://www.producthunt.com/products/vidclaw?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-vidclaw" target="_blank" rel="noopener noreferrer"><img alt="VidClaw on Product Hunt" width="150" height="32" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1080264&amp;theme=dark&amp;t=1771254815882" style="display:block;"></a>
+      </div>
+      <a href="https://github.com/madrzak/vidclaw" target="_blank" rel="noopener noreferrer" class="gh-link" title="View on GitHub"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+    </div>
+  </nav>
+
+  <div class="page">
+    <a href="/blog" class="back-link">&larr; Back to Blog</a>
+
+    <h1>How to Edit Your Agent's Soul in VidClaw</h1>
+    <div class="article-meta">
+      <span>By <a href="https://x.com/woocassh">woocassh</a></span>
+      <span>February 23, 2026</span>
+      <span>5 min read</span>
+    </div>
+    <div class="article-tags">
+      <span class="post-tag">tutorial</span>
+      <span class="post-tag">soul-editor</span>
+      <span class="post-tag">customization</span>
+      <span class="post-tag">agents</span>
+    </div>
+
+    <p>Your OpenClaw agent's personality, tone, and default behavior are all defined in a single file: <strong>SOUL.md</strong>. It's the system prompt that shapes every response your agent produces. VidClaw's Soul Editor gives you a visual way to write, preview, and version-control that file — no SSH required.</p>
+
+    <h2>What is SOUL.md?</h2>
+    <p>SOUL.md is a Markdown file that lives in your agent's workspace at <code>~/.openclaw/workspace/SOUL.md</code>. Whatever you write here becomes the core instructions your agent follows on every task. Think of it as your agent's personality DNA.</p>
+    <p>A soul might be as simple as "You are a helpful coding assistant" or as detailed as a multi-paragraph document covering tone, formatting rules, coding style preferences, and communication boundaries. The more specific you are, the more consistent your agent behaves.</p>
+
+    <h2>Opening the Soul Editor</h2>
+    <p>In the VidClaw dashboard, click the <strong>Heart icon</strong> in the left sidebar to open the Soul page. You'll see a full-screen text editor on the left and a sidebar on the right with <strong>Templates</strong> and <strong>History</strong> tabs.</p>
+    <p>The editor supports four workspace files via tabs at the top:</p>
+    <ul>
+      <li><strong>SOUL.md</strong> — your agent's core personality and instructions</li>
+      <li><strong>IDENTITY.md</strong> — agent identity and role definition</li>
+      <li><strong>USER.md</strong> — context about you, the user</li>
+      <li><strong>AGENTS.md</strong> — multi-agent configuration</li>
+    </ul>
+    <p>For this guide, we'll focus on SOUL.md — the file that has the biggest impact on how your agent behaves.</p>
+
+    <h2>Starting with a Template</h2>
+    <p>If you're not sure where to begin, VidClaw ships with <strong>six starter templates</strong> to get you going. Click the <strong>Templates</strong> tab in the right sidebar to browse them:</p>
+    <ul>
+      <li><strong>Minimal Assistant</strong> — bare bones, helpful, no personality</li>
+      <li><strong>Friendly Companion</strong> — warm, conversational, uses emoji</li>
+      <li><strong>Technical Expert</strong> — precise, detailed, code-focused</li>
+      <li><strong>Creative Partner</strong> — imaginative, brainstormy, enthusiastic</li>
+      <li><strong>Stern Operator</strong> — no-nonsense, military-efficient, dry humor</li>
+      <li><strong>Sarcastic Sidekick</strong> — witty, slightly snarky, still helpful</li>
+    </ul>
+    <p>Click any template to <strong>preview</strong> it in the editor (read-only). If you like what you see, click <strong>Use Template</strong> to apply it. This replaces your current SOUL.md content — but don't worry, the previous version is automatically saved to history.</p>
+
+    <div class="note">
+      <p><strong>Tip:</strong> Templates are a starting point. The best results come from customizing a template to match your specific workflow and preferences.</p>
+    </div>
+
+    <h2>Writing Your Own Soul</h2>
+    <p>The most powerful approach is writing your own instructions from scratch. Here's what a well-structured SOUL.md might look like:</p>
+
+    <div class="code-block"><span class="comment"># Agent Personality</span>
+
+You are a senior backend engineer. You write clean,
+well-tested Python code. You prefer simplicity over
+cleverness.
+
+<span class="comment"># Communication Style</span>
+
+- Be direct and concise
+- Skip pleasantries and filler
+- When you're unsure, say so
+- Always explain your reasoning
+
+<span class="comment"># Code Standards</span>
+
+- Use type hints on all function signatures
+- Write docstrings for public functions
+- Prefer composition over inheritance
+- Never suppress exceptions silently
+
+<span class="comment"># Boundaries</span>
+
+- Don't modify files outside the project directory
+- Ask before deleting anything
+- Never commit directly to main</div>
+
+    <p>A few tips for writing effective souls:</p>
+    <ul>
+      <li><strong>Be specific.</strong> "Write clean code" is vague. "Use type hints on all function signatures" is actionable.</li>
+      <li><strong>Use headers.</strong> Organize by category — personality, code style, boundaries, communication. It helps both you and the agent.</li>
+      <li><strong>Set boundaries.</strong> Tell your agent what it should <em>not</em> do. Explicit guardrails prevent surprises.</li>
+      <li><strong>Iterate.</strong> Your soul is a living document. Refine it as you learn what works and what doesn't.</li>
+    </ul>
+
+    <h2>Saving and Keyboard Shortcuts</h2>
+    <p>When you've made changes, a <strong>yellow dot</strong> appears on the active tab to indicate unsaved work. Click the <strong>Save</strong> button or press <code>Cmd+S</code> (Mac) / <code>Ctrl+S</code> (Linux) to save.</p>
+    <p>The button briefly turns green with a "Saved" confirmation. Your changes take effect immediately — your agent picks up the new soul on its next task. No restarts needed.</p>
+
+    <h2>Version History</h2>
+    <p>Every time you save, VidClaw automatically stores the <strong>previous version</strong> in history. Click the <strong>History</strong> tab in the right sidebar to see past versions with timestamps and content previews.</p>
+    <p>To restore an old version:</p>
+    <ol>
+      <li>Click a history entry to preview it in the editor</li>
+      <li>Click <strong>Revert</strong> to restore that version</li>
+      <li>Your current content is saved to history before the revert, so nothing is ever lost</li>
+    </ol>
+    <p>VidClaw keeps the last <strong>20 versions</strong> of each file. That's plenty of runway to experiment without fear of losing a soul configuration that worked well.</p>
+
+    <div class="note">
+      <p><strong>Tip:</strong> Before making a big change to your soul, save your current version first. That way you have a clean restore point in history if the new version doesn't work out.</p>
+    </div>
+
+    <h2>Beyond SOUL.md</h2>
+    <p>The other three files in the Soul Editor deserve a quick mention:</p>
+    <ul>
+      <li><strong>IDENTITY.md</strong> — define your agent's name, role, and how it introduces itself. Useful if you want a consistent identity across tasks.</li>
+      <li><strong>USER.md</strong> — tell your agent about yourself. Your tech stack, preferences, timezone, communication style. The more context your agent has about you, the better it can tailor its responses.</li>
+      <li><strong>AGENTS.md</strong> — configure multi-agent behavior if you're running more than one agent in your workspace.</li>
+    </ul>
+    <p>All four files support the same editing, saving, and history features. Templates are only available for SOUL.md.</p>
+
+    <h2>Get Started</h2>
+    <p>Open your VidClaw dashboard, click the Heart icon, and start shaping your agent. If you haven't installed VidClaw yet, check out the <a href="/blog/how-to-setup-openclaw/">setup guide</a> to get running in under a minute.</p>
+
+    <div class="cta-box">
+      <p class="cta-title">Give your agent a personality.</p>
+      <p>VidClaw's Soul Editor makes it easy to experiment, iterate, and roll back.</p>
+      <a href="https://github.com/madrzak/vidclaw" class="btn btn-primary">Get VidClaw on GitHub &rarr;</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>Built by <a href="https://x.com/woocassh">woocassh</a> · <a href="https://github.com/madrzak/vidclaw">GitHub</a> · <a href="/features">Features</a> · <a href="/install">Install</a> · <a href="/blog">Blog</a> · <a href="/changelog">Changelog</a> · MIT License</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+[
+  {
+    "slug": "ai-agent-dashboard",
+    "title": "AI Agent Dashboard: Monitor and Control Your AI Assistants in Real-Time",
+    "date": "2026-03-03",
+    "author": "woocassh",
+    "excerpt": "Discover what an AI agent dashboard is, why you need one for managing autonomous AI systems, and how VidClaw provides the best self-hosted AI dashboard for real-time monitoring.",
+    "tags": ["ai agent dashboard", "self-hosted", "monitoring", "AI agents"],
+    "readingTime": "8 min read",
+    "gradient": "linear-gradient(135deg, #6366f1, #8b5cf6)"
+  },
+  {
+    "slug": "how-to-manage-ai-agents",
+    "title": "How to Manage AI Agents: Task Assignment, Monitoring, and Orchestration Guide",
+    "date": "2026-03-03",
+    "author": "woocassh",
+    "excerpt": "Complete guide to managing AI agents effectively. Learn task assignment strategies, monitoring best practices, and AI agent orchestration techniques.",
+    "tags": ["manage ai agents", "ai task automation", "ai agent orchestration", "tutorial"],
+    "readingTime": "9 min read",
+    "gradient": "linear-gradient(135deg, #22c55e, #16a34a)"
+  },
+  {
+    "slug": "claude-agent-management",
+    "title": "Claude Agent Management: Running Anthropic's Claude as an Autonomous AI Agent",
+    "date": "2026-03-03",
+    "author": "woocassh",
+    "excerpt": "Learn how to run Anthropic's Claude as an autonomous AI agent using OpenClaw. Complete guide to setup, best practices, and using VidClaw for management.",
+    "tags": ["claude agent management", "anthropic claude automation", "claude ai agent", "claude autonomous agent"],
+    "readingTime": "9 min read",
+    "gradient": "linear-gradient(135deg, #ec4899, #a855f7)"
+  },
+  {
+    "slug": "what-is-openclaw",
+    "title": "What is OpenClaw? Open-Source AI Agent Framework Explained",
+    "date": "2026-02-24",
+    "author": "woocassh",
+    "excerpt": "Everything you need to know about OpenClaw — the open-source AI agent framework — and how VidClaw gives you a self-hosted dashboard to manage it.",
+    "tags": ["openclaw", "AI agents", "framework", "self-hosted"],
+    "readingTime": "5 min read",
+    "gradient": "linear-gradient(135deg, #3b82f6, #6366f1)"
+  },
+  {
+    "slug": "openclaw-dashboard-setup-guide",
+    "title": "OpenClaw Dashboard Setup: Install VidClaw in 5 Minutes",
+    "date": "2026-02-24",
+    "author": "woocassh",
+    "excerpt": "A focused guide to installing VidClaw as your self-hosted OpenClaw dashboard — from install to your first task in under five minutes.",
+    "tags": ["tutorial", "openclaw", "dashboard", "setup"],
+    "readingTime": "7 min read",
+    "gradient": "linear-gradient(135deg, #f97316, #ea580c)"
+  },
+  {
+    "slug": "managing-ai-agents-with-kanban",
+    "title": "Managing AI Agents with Kanban Boards: Why Visual Task Management Changes Everything",
+    "date": "2026-02-24",
+    "author": "woocassh",
+    "excerpt": "How VidClaw's kanban system turns chaotic AI agent workflows into something you can actually see and control.",
+    "tags": ["kanban", "AI agents", "task-management", "workflow"],
+    "readingTime": "8 min read",
+    "gradient": "linear-gradient(135deg, #22c55e, #16a34a)"
+  },
+  {
+    "slug": "how-to-edit-your-agents-soul",
+    "title": "How to Edit Your Agent's Soul in VidClaw",
+    "date": "2026-02-23",
+    "author": "woocassh",
+    "excerpt": "Learn how to use VidClaw's Soul Editor to shape your OpenClaw agent's personality — from picking a starter template to writing custom instructions and managing version history.",
+    "tags": ["tutorial", "soul-editor", "customization", "agents"],
+    "readingTime": "5 min read",
+    "gradient": "linear-gradient(135deg, #ec4899, #a855f7)"
+  },
+  {
+    "slug": "7-features-that-make-vidclaw-your-ai-command-center",
+    "title": "7 Features That Make VidClaw Your AI Command Center",
+    "date": "2026-02-23",
+    "author": "woocassh",
+    "excerpt": "A deep dive into VidClaw's core features — from the Kanban board and real-time usage tracking to the Soul Editor and file browser. See what makes it the best way to manage your OpenClaw agent.",
+    "tags": ["features", "overview", "dashboard", "self-hosted"],
+    "readingTime": "6 min read",
+    "gradient": "linear-gradient(135deg, #f97316, #fbbf24)"
+  },
+  {
+    "slug": "how-to-setup-openclaw",
+    "title": "How to Set Up OpenClaw with VidClaw: Complete Guide",
+    "date": "2026-02-22",
+    "author": "woocassh",
+    "excerpt": "Step-by-step tutorial for installing OpenClaw on your VPS, connecting VidClaw as your self-hosted dashboard, and creating your first AI agent task.",
+    "tags": ["tutorial", "openclaw", "setup", "self-hosted"],
+    "readingTime": "8 min read",
+    "gradient": "linear-gradient(135deg, #6366f1, #8b5cf6)"
+  }
+]

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Install VidClaw — Self-Hosted OpenClaw Dashboard Setup Guide</title>
+  <meta name="description" content="Install VidClaw, the self-hosted AI dashboard for OpenClaw agent management. One command installs Node.js, Tailscale, and VidClaw. Access via SSH tunnel or Tailscale in under a minute.">
+  <link rel="canonical" href="https://vidclaw.com/install">
+  <script async src="https://analytics.redstudio.ie/js/pa-wEudNzILXpT5UYCuAZWXT.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --bg: #0a0a0f; --surface: #12121a; --border: #1e1e2e; --text: #e4e4e7; --muted: #71717a; --accent: #f97316; }
+    html, body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; max-width: 1100px; margin: 0 auto; padding: 1.5rem 2rem; gap: 0.75rem; }
+    .ph-badge { display: flex; align-items: center; }
+    .ph-badge img { border-radius: 4px; }
+    .nav-icons { display: flex; align-items: center; gap: 0.75rem; }
+    .gh-link { color: var(--muted); transition: color 0.2s; }
+    .gh-link:hover { color: var(--text); }
+    nav .brand { font-weight: 800; font-size: 1.2rem; color: var(--text); display: flex; align-items: center; gap: 0.5rem; }
+    nav .brand:hover { text-decoration: none; color: var(--accent); }
+    nav .nav-links { display: flex; gap: 1.5rem; font-size: 0.95rem; }
+    nav .nav-links a { color: var(--muted); }
+    nav .nav-links a:hover, nav .nav-links a.active { color: var(--accent); text-decoration: none; }
+
+    .page { max-width: 800px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+    .page h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #f97316, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .page .subtitle { color: var(--muted); font-size: 1.15rem; margin-bottom: 3rem; }
+    .page h2 { font-size: 1.5rem; font-weight: 700; margin: 3rem 0 1rem; padding-top: 1rem; }
+    .page h3 { font-size: 1.15rem; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+    .page p, .page li { color: var(--muted); font-size: 1rem; margin-bottom: 1rem; }
+    .page p strong { color: var(--text); }
+    .page ul, .page ol { padding-left: 1.5rem; margin-bottom: 1.5rem; }
+    .page li { margin-bottom: 0.5rem; }
+    .page code { background: var(--surface); border: 1px solid var(--border); padding: 0.15rem 0.4rem; border-radius: 4px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.9rem; }
+
+    .code-block { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem 2rem; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.9rem; color: var(--text); overflow-x: auto; margin-bottom: 1.5rem; }
+    .code-block .comment { color: var(--muted); }
+    .code-block .cmd { color: var(--accent); }
+
+    .step { counter-increment: step; position: relative; padding-left: 3rem; margin-bottom: 2.5rem; }
+    .step::before { content: counter(step); position: absolute; left: 0; top: 0; width: 2rem; height: 2rem; background: var(--accent); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; }
+    .steps { counter-reset: step; }
+
+    .note { background: var(--surface); border-left: 3px solid var(--accent); padding: 1rem 1.5rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+    .note p { margin-bottom: 0; }
+
+    table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+    th, td { text-align: left; padding: 0.6rem 1rem; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
+    th { color: var(--text); font-weight: 600; }
+    td { color: var(--muted); }
+    td code { font-size: 0.85rem; }
+
+    footer { text-align: center; padding: 3rem 2rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="brand">⚡ VidClaw</a>
+    <div class="nav-links">
+      <a href="/features">Features</a>
+      <a href="/install" class="active">Install</a>
+      <a href="/blog">Blog</a>
+      <a href="/changelog">Changelog</a>
+    </div>
+    <div class="nav-icons">
+      <div class="ph-badge">
+        <a href="https://www.producthunt.com/products/vidclaw?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-vidclaw" target="_blank" rel="noopener noreferrer"><img alt="VidClaw on Product Hunt" width="150" height="32" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1080264&amp;theme=dark&amp;t=1771254815882" style="display:block;"></a>
+      </div>
+      <a href="https://github.com/madrzak/vidclaw" target="_blank" rel="noopener noreferrer" class="gh-link" title="View on GitHub"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+    </div>
+  </nav>
+
+  <div class="page">
+    <h1>Install VidClaw</h1>
+    <p class="subtitle">Get your self-hosted AI dashboard up and running in under a minute.</p>
+
+    <h2>Prerequisites</h2>
+    <ul>
+      <li>A running <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener">OpenClaw</a> instance</li>
+      <li>SSH access to your server or <a href="https://tailscale.com" target="_blank" rel="noopener">Tailscale</a> for remote access</li>
+    </ul>
+
+    <h2>Quick Install</h2>
+    <p>One command. Installs Node.js, Tailscale, and VidClaw automatically:</p>
+    <div class="code-block">
+      <span class="cmd">curl</span> -fsSL vidclaw.com/install.sh | <span class="cmd">bash</span>
+    </div>
+    <p>Localhost only? Add <code>--no-tailscale</code>:</p>
+    <div class="code-block">
+      <span class="cmd">curl</span> -fsSL vidclaw.com/install.sh | <span class="cmd">bash</span> -s -- --no-tailscale
+    </div>
+
+    <h2>Setup Options</h2>
+    <p><code>./setup.sh</code> accepts the following flags:</p>
+    <table>
+      <tr><th>Flag</th><th>Description</th></tr>
+      <tr><td><code>--dry-run</code></td><td>Print actions without executing them</td></tr>
+      <tr><td><code>--tailscale [PORT]</code></td><td>Enable Tailscale Serve integration (default port: 8443)</td></tr>
+      <tr><td><code>--service-mode MODE</code></td><td>Override service mode (<code>auto</code>, <code>systemd</code>, <code>launchd</code>, <code>direct</code>, <code>none</code>)</td></tr>
+      <tr><td><code>--skip-service</code></td><td>Install and build only; do not register a service</td></tr>
+      <tr><td><code>--interactive</code></td><td>Allow interactive sudo prompts when needed</td></tr>
+      <tr><td><code>--skip-heartbeat</code></td><td>Do not modify <code>../HEARTBEAT.md</code></td></tr>
+    </table>
+
+    <h2>Service Modes</h2>
+    <p>The <code>--service-mode</code> flag controls how VidClaw runs as a background service:</p>
+    <table>
+      <tr><th>Mode</th><th>Description</th></tr>
+      <tr><td><code>auto</code></td><td>Detect the best option for your OS (default)</td></tr>
+      <tr><td><code>systemd</code></td><td>Register as a systemd unit (Linux)</td></tr>
+      <tr><td><code>launchd</code></td><td>Register as a launchd agent (macOS)</td></tr>
+      <tr><td><code>direct</code></td><td>Run directly as a background process</td></tr>
+      <tr><td><code>none</code></td><td>Do not start any service</td></tr>
+    </table>
+
+    <h2>Accessing the Dashboard</h2>
+    <p>VidClaw only binds to <code>localhost</code> — it is not exposed to the network. Two ways to access it remotely:</p>
+    <h3>Tailscale (default)</h3>
+    <p>The installer enables <a href="https://tailscale.com" target="_blank" rel="noopener">Tailscale Serve</a> by default on port 8443. Open <code>https://your-machine.your-tailnet.ts.net:8443</code> from any device on your tailnet.</p>
+
+    <h3>SSH tunnel</h3>
+    <p>If you installed with <code>--no-tailscale</code>, use an SSH tunnel instead:</p>
+    <div class="code-block">
+      <span class="cmd">ssh</span> -L 3333:localhost:3333 root@your-server
+    </div>
+    <p>Then open <a href="http://localhost:3333">http://localhost:3333</a> on your local machine.</p>
+
+    <h2>Helper Scripts</h2>
+    <p>VidClaw includes helper scripts for day-to-day management:</p>
+    <table>
+      <tr><th>Script</th><th>Description</th></tr>
+      <tr><td><code>./start.sh</code></td><td>Start the service. Add <code>--dev</code> for local dev mode (backend + Vite HMR).</td></tr>
+      <tr><td><code>./stop.sh</code></td><td>Stop the running service.</td></tr>
+      <tr><td><code>./status.sh</code></td><td>Check whether the service is running.</td></tr>
+      <tr><td><code>./logs.sh</code></td><td>Tail service logs. Use <code>-n 50</code> to limit lines, <code>--no-follow</code> to exit after printing.</td></tr>
+    </table>
+    <p>All scripts accept <code>--dry-run</code>, <code>--interactive</code>, and <code>--service-mode MODE</code>.</p>
+
+    <h2>Updating</h2>
+    <div class="code-block">
+      <span class="cmd">cd</span> ~/.openclaw/workspace/dashboard<br>
+      <span class="cmd">./update.sh</span>
+    </div>
+    <p>Pulls the latest code, rebuilds the frontend, and restarts the service.</p>
+    <table>
+      <tr><th>Flag</th><th>Description</th></tr>
+      <tr><td><code>--skip-git</code></td><td>Skip git fetch/pull</td></tr>
+      <tr><td><code>--skip-build</code></td><td>Skip dependency install and build</td></tr>
+      <tr><td><code>--no-restart</code></td><td>Do not restart the service after update</td></tr>
+      <tr><td><code>--allow-merge-pull</code></td><td>Allow non-fast-forward pull when ff-only fails</td></tr>
+    </table>
+
+    <h2>Uninstalling</h2>
+    <div class="code-block">
+      <span class="cmd">cd</span> ~/.openclaw/workspace/dashboard<br>
+      <span class="cmd">./uninstall.sh</span>
+    </div>
+    <p>Stops the service and removes the service registration. Your OpenClaw data is never touched.</p>
+    <p>Add <code>--purge-data</code> to also remove VidClaw's runtime data files (tasks, logs, activity).</p>
+
+    <div class="note">
+      <p><strong>Need help?</strong> Open an issue on <a href="https://github.com/madrzak/vidclaw/issues">GitHub</a> or check the <a href="/changelog">changelog</a> for recent updates.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>Built by <a href="https://x.com/woocassh">woocassh</a> · <a href="https://github.com/madrzak/vidclaw">GitHub</a> · <a href="/features">Features</a> · <a href="/install">Install</a> · <a href="/blog">Blog</a> · <a href="/changelog">Changelog</a> · MIT License</p>
+  </footer>
+
+</body>
+</html>

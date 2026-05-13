@@ -1,0 +1,13 @@
+.git
+.github
+node_modules
+dist
+data/*.json
+data/attachments
+server/data/channels.json
+*.log
+.env
+.env.local
+.env.*.local
+settings.local.json
+openclaw-ref

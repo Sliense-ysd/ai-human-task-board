@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VidClaw — Open-Source Self-Hosted OpenClaw Dashboard</title>
+  <meta name="description" content="VidClaw is a free, open-source, self-hosted OpenClaw dashboard for managing AI agents. Kanban task boards, usage tracking, model switching, and soul editing — all on your own server.">
+  <link rel="canonical" href="https://vidclaw.com">
+
+  <!-- Twitter / X card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VidClaw — Open-Source Self-Hosted OpenClaw Dashboard">
+  <meta name="twitter:description" content="Free, open-source dashboard for managing OpenClaw AI agents. Kanban task boards, usage tracking, model switching, and soul editing — all on your own server.">
+  <meta name="twitter:image" content="https://vidclaw.com/img/og-vidclaw-com.png">
+
+  <!-- Open Graph (fallback for other platforms) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vidclaw.com">
+  <meta property="og:title" content="VidClaw — Open-Source Self-Hosted OpenClaw Dashboard">
+  <meta property="og:description" content="Free, open-source dashboard for managing OpenClaw AI agents. Kanban task boards, usage tracking, model switching, and soul editing — all on your own server.">
+  <meta property="og:image" content="https://vidclaw.com/img/og-vidclaw-com.png">
+
+  <!-- Privacy-friendly analytics by Plausible -->
+  <script async src="https://analytics.redstudio.ie/js/pa-wEudNzILXpT5UYCuAZWXT.js"></script>
+  <script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+  </script>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --border: #1e1e2e;
+      --text: #e4e4e7;
+      --muted: #71717a;
+      --accent: #f97316;
+      --accent-glow: rgba(249, 115, 22, 0.15);
+    }
+
+    html, body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .logo {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 40px rgba(249, 115, 22, 0.4));
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #f97316, #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: var(--muted);
+      max-width: 600px;
+      margin: 1rem auto 2.5rem;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: #ea580c;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(249, 115, 22, 0.3);
+      text-decoration: none;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* Features */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Why section */
+    .story {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
+    .story h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .story p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .story p strong {
+      color: var(--text);
+    }
+
+    /* Install */
+    .install {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+      text-align: center;
+    }
+
+    .install h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .install p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .code-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem 2rem;
+      text-align: left;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.9rem;
+      color: var(--text);
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+    }
+
+    .code-block .comment { color: var(--muted); }
+    .code-block .cmd { color: var(--accent); }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--accent); }
+
+    /* Security badge */
+    .security {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 2rem;
+    }
+
+    .security span { color: #22c55e; }
+
+    /* Nav */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+      gap: 0.75rem;
+      position: relative;
+      z-index: 10;
+    }
+    nav .brand { font-weight: 800; font-size: 1.2rem; color: var(--text); display: flex; align-items: center; gap: 0.5rem; }
+    nav .brand:hover { text-decoration: none; color: var(--accent); }
+    nav .nav-links { display: flex; align-items: center; gap: 1.5rem; font-size: 0.95rem; }
+    nav .nav-links a { color: var(--muted); text-decoration: none; }
+    nav .nav-links a:hover { color: var(--accent); }
+
+    /* Product Hunt badge */
+    .ph-badge {
+      display: flex;
+      align-items: center;
+    }
+
+    .ph-badge img {
+      border-radius: 4px;
+    }
+    .nav-icons { display: flex; align-items: center; gap: 0.75rem; }
+    .gh-link { color: var(--muted); transition: color 0.2s; }
+    .gh-link:hover { color: var(--text); }
+
+    /* Screenshots */
+    .screenshots {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+    }
+
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .screenshot-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+
+    .screenshot-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 50px rgba(249, 115, 22, 0.15), 0 8px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .screenshot-item img {
+      width: 100%;
+      display: block;
+      border-radius: 0;
+      transition: transform 0.3s;
+    }
+
+    .screenshot-item:hover img {
+      transform: scale(1.02);
+    }
+
+    .screenshot-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem 1.25rem 1rem;
+      background: linear-gradient(to top, rgba(10, 10, 15, 0.9) 0%, transparent 100%);
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .screenshot-grid .shot-small {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .screenshot-grid .shot-small { grid-template-columns: 1fr; }
+    }
+
+    .star-prompt {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .star-prompt p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .features { grid-template-columns: 1fr; }
+      .cta-row { flex-direction: column; align-items: center; }
+      .nav-links { order: 3; width: 100%; justify-content: center; gap: 1rem !important; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="brand">⚡ VidClaw</a>
+    <div class="nav-links">
+      <a href="/features">Features</a>
+      <a href="/install">Install</a>
+      <a href="/blog">Blog</a>
+      <a href="/changelog">Changelog</a>
+    </div>
+    <div class="nav-icons">
+      <div class="ph-badge">
+        <a href="https://www.producthunt.com/products/vidclaw?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-vidclaw" target="_blank" rel="noopener noreferrer"><img alt="VidClaw on Product Hunt" width="150" height="32" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1080264&amp;theme=dark&amp;t=1771254815882" style="display:block;"></a>
+      </div>
+      <a href="https://github.com/madrzak/vidclaw" target="_blank" rel="noopener noreferrer" class="gh-link" title="View on GitHub"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="logo">⚡</div>
+    <h1>VidClaw</h1>
+    <p class="tagline">An open-source, self-hosted command center for your OpenClaw agent. Manage tasks, track usage, switch models, and shape your agent's soul - all from one dashboard.</p>
+    <div class="cta-row">
+      <a href="https://github.com/madrzak/vidclaw" class="btn btn-primary"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub</a>
+      <a href="#install" class="btn btn-ghost">Quick Install</a>
+    </div>
+    <div class="security">
+      <span>●</span> Self-hosted · Secure access via Tailscale
+    </div>
+  </div>
+
+  <div class="screenshots">
+    <div class="screenshot-grid">
+      <div class="screenshot-item">
+        <img src="img/kanban.png" alt="VidClaw Kanban task board with backlog, todo, in progress, and done columns" loading="lazy">
+        <div class="screenshot-caption">Kanban Task Board — drag cards, assign priorities, your agent picks them up</div>
+      </div>
+      <div class="shot-small">
+        <div class="screenshot-item">
+          <img src="img/calendar.png" alt="VidClaw activity calendar showing agent work history" loading="lazy">
+          <div class="screenshot-caption">Activity Calendar</div>
+        </div>
+        <div class="screenshot-item">
+          <img src="img/usage.png" alt="VidClaw model usage tracker showing token consumption" loading="lazy">
+          <div class="screenshot-caption">Live Usage Tracking</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Everything you need to run your agent</h2>
+    <p class="section-sub">Six panels. One dashboard. Zero cloud dependencies.</p>
+    <div class="features">
+      <div class="card">
+        <div class="card-icon">🗂️</div>
+        <h3>Kanban Task Board</h3>
+        <p>Backlog → Todo → In Progress → Done. Drag & drop cards, assign priorities and skills. Your agent picks up tasks automatically.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <h3>Usage Tracking</h3>
+        <p>Real-time token usage and cost estimates. Progress bars matching Anthropic's rate limit windows. Model switching from the navbar.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧩</div>
+        <h3>Skills Manager</h3>
+        <p>Browse all bundled and custom skills. Enable, disable, or create new ones. Your agent loads them automatically on the next session.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💜</div>
+        <h3>Soul Editor</h3>
+        <p>Edit your agent's persona, identity, and operating instructions. Version history with one-click revert. Six starter templates included.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📅</div>
+        <h3>Activity Calendar</h3>
+        <p>Monthly view of what your agent has been working on. Parsed from memory files and task completion history.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📁</div>
+        <h3>Content Browser</h3>
+        <p>Browse your workspace files with markdown preview, syntax highlighting, and download. See what your agent has created.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="story">
+    <h2>Why I built this</h2>
+    <p>I run an AI agent on <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener">OpenClaw</a> that handles SEO tracking, content writing, code tasks, and more. Managing it through chat alone was getting chaotic.</p>
+    <p>I needed a way to <strong>queue tasks visually</strong>, see what my agent was doing, <strong>track how much I was spending</strong>, and tweak its personality without editing files over SSH.</p>
+    <p>VidClaw is that dashboard. It's opinionated, minimal, and built for people who actually run AI agents - not just talk about them.</p>
+    <p><strong>It's 100% self-hosted.</strong> Your data never leaves your server. The dashboard only binds to localhost - you access it through an SSH tunnel. No accounts, no cloud, no tracking.</p>
+  </div>
+
+  <div class="install" id="install">
+    <h2>Up and running in 60 seconds</h2>
+    <p>One command. Installs Node.js, Tailscale, and VidClaw automatically.</p>
+    <div class="code-block">
+      <span class="comment"># Install everything</span><br>
+      <span class="cmd">curl</span> -fsSL vidclaw.com/install.sh | <span class="cmd">bash</span>
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--muted);">Localhost only? Add <code style="color: var(--accent);">--no-tailscale</code></p>
+    <a href="https://github.com/madrzak/vidclaw" class="btn btn-primary">Get Started →</a>
+  </div>
+
+  <div class="star-prompt">
+    <p>If VidClaw is useful to you, consider giving it a ⭐ on GitHub. It helps others find it.</p>
+    <a href="https://github.com/madrzak/vidclaw" class="btn btn-ghost" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Star on GitHub</a>
+  </div>
+
+  <footer>
+    <p>Built by <a href="https://x.com/woocassh">woocassh</a> · <a href="https://github.com/madrzak/vidclaw">GitHub</a> · <a href="/features">Features</a> · <a href="/install">Install</a> · <a href="/blog">Blog</a> · <a href="/changelog">Changelog</a> · MIT License</p>
+  </footer>
+
+</body>
+</html>
