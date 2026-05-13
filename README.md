@@ -61,6 +61,8 @@ Set `VIDCLAW_AUTH_USER` and `VIDCLAW_AUTH_PASSWORD` before exposing the service 
 ./stop.sh        # stop the service
 ./status.sh      # check service status
 ./logs.sh        # view logs
+npm run sync:wip # one-shot sync from ~/ai-shared/AI-Task/WIP-BOARD.md
+npm run watch:wip # keep syncing WIP board changes to VidClaw
 ```
 
 ## Development
@@ -74,6 +76,32 @@ Starts the backend + Vite dev server with HMR.
 ## API
 
 See [API.md](API.md) for the endpoint reference.
+
+## WIP Board Sync
+
+This fork includes a local sync helper for the canonical Markdown board:
+
+- source of truth: `~/ai-shared/AI-Task/WIP-BOARD.md`
+- target: VidClaw task API
+
+The sync behavior is intentionally one-way:
+
+- create/update VidClaw tasks for active `WIP-YYYYMMDD-NNN` items
+- archive VidClaw tasks whose WIP item left the active board
+
+Status mapping:
+
+- `discussing` -> `backlog`
+- `planned` -> `todo`
+- `executing` / `verifying` -> `in-progress`
+- `done` -> `done`
+- `abandoned` -> `archived`
+
+Priority mapping:
+
+- `P0` / `P1` -> `high`
+- `P2` -> `medium`
+- `P3` -> `low`
 
 ## Stack
 

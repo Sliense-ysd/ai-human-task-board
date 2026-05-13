@@ -14,7 +14,9 @@
     "ops:stop": "./stop.sh",
     "ops:status": "./status.sh",
     "ops:logs": "./logs.sh --no-follow",
-    "ops:doctor": "./doctor.sh"
+    "ops:doctor": "./doctor.sh",
+    "sync:wip": "node scripts/sync-wip-board-to-vidclaw.mjs",
+    "watch:wip": "node scripts/watch-wip-board-to-vidclaw.mjs"
   },
   "engines": {
     "node": ">=18.0.0",
