@@ -306,7 +306,7 @@ export default function TaskDialog({ open, onClose, onSave, onDelete, task, defa
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
       <div
         className="bg-card border border-border w-full max-w-4xl flex flex-col shadow-2xl rounded-xl max-h-[85vh]"
         onClick={e => e.stopPropagation()}

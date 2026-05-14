@@ -233,7 +233,7 @@ export default function TaskDetailDialog({ open, onClose, task }: TaskDetailDial
   const skillsList = task.skills && task.skills.length ? task.skills : (task.skill ? [task.skill] : [])
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
       <div
         className="bg-card border border-border w-full max-w-4xl flex flex-col shadow-2xl rounded-xl max-h-[85vh]"
         onClick={(e: React.MouseEvent) => e.stopPropagation()}
